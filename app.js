@@ -124,22 +124,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
- /* =========================
+/* =========================
    REFERIDOS
 ========================= */
 
-const refCode = document.getElementById("refCode");
-const copyRef = document.getElementById("copyRef");
+const refCode =
+  document.getElementById("refCode");
+
+const copyRef =
+  document.getElementById("copyRef");
+
+const refLink =
+  document.getElementById("refLink");
+
+const copyRefLink =
+  document.getElementById("copyRefLink");
+
+
+const referralBaseUrl =
+  window.location.origin +
+  window.location.pathname;
+
 
 function generateReferralCode(address) {
 
   if (!address) {
-    return "NEXTORA-DEMO";
+    return "NXT-DEMO";
   }
 
-  return "NXT-" + address
-    .slice(2, 8)
-    .toUpperCase();
+  return "NXT-" +
+    address
+      .replace(/^0x/i, "")
+      .slice(0, 8)
+      .toUpperCase();
+
+}
+
+
+function generateReferralLink(code) {
+
+  return `${referralBaseUrl}?ref=${encodeURIComponent(code)}`;
 
 }
 
@@ -148,41 +172,100 @@ function updateReferralCode(address) {
 
   if (!refCode) return;
 
-  refCode.textContent =
+  const code =
     generateReferralCode(address);
+
+  refCode.textContent =
+    code;
+
+  if (refLink) {
+
+    refLink.textContent =
+      generateReferralLink(code);
+
+  }
+
+}
+
+
+async function copyReferralText(
+  text,
+  successMessage
+) {
+
+  if (!text) return;
+
+  try {
+
+    await navigator.clipboard.writeText(text);
+
+    showToast(successMessage);
+
+  } catch {
+
+    showToast(
+      `Copia manualmente: ${text}`
+    );
+
+  }
 
 }
 
 
 copyRef?.addEventListener(
   "click",
-  async () => {
+  () => {
 
     const code =
-      refCode?.textContent?.trim() || "";
+      refCode?.textContent?.trim();
 
     if (!code) return;
 
-    try {
+    copyReferralText(
+      code,
+      "Código de referido copiado"
+    );
 
-      await navigator.clipboard.writeText(code);
+  }
+);
+
+
+copyRefLink?.addEventListener(
+  "click",
+  () => {
+
+    const link =
+      refLink?.textContent?.trim();
+
+    if (
+      !link ||
+      link.includes("Conecta tu billetera")
+    ) {
 
       showToast(
-        "Código de referido copiado"
+        "Conecta tu billetera para generar tu enlace."
       );
 
-    } catch {
-
-      showToast(
-        `Código: ${code}`
-      );
+      return;
 
     }
 
+    copyReferralText(
+      link,
+      "Enlace de referido copiado"
+    );
+
   }
-); 
+);
 
 
+/*
+ * Código provisional para usuarios
+ * que todavía no han conectado una
+ * billetera.
+ */
+
+updateReferralCode(null);
 
   /* =========================
      COPIAR BILLETERAS
