@@ -248,26 +248,116 @@ copyRef?.addEventListener(
 
     });
 
+/* =========================
+   RETIROS
+========================= */
 
-  /* =========================
-     RETIROS
-  ========================= */
+const withdrawWallet =
+  document.getElementById("withdrawWallet");
 
-  document
-    .querySelector(
-      '[data-action="withdraw"]'
-    )
-    ?.addEventListener(
-      "click",
-      () => {
+const withdrawBalance =
+  document.getElementById("withdrawBalance");
 
-        showToast(
-          "Solicitud de retiro. Comisión: 3%."
-        );
+const withdrawGross =
+  document.getElementById("withdrawGross");
 
-      }
+const withdrawFee =
+  document.getElementById("withdrawFee");
+
+const withdrawNet =
+  document.getElementById("withdrawNet");
+
+const withdrawBtn =
+  document.getElementById("withdrawBtn");
+
+
+function calculateWithdrawal() {
+
+  const gross =
+    Math.max(
+      0,
+      Number(withdrawBalance?.value) || 0
     );
 
+  const fee =
+    gross * 0.03;
+
+  const net =
+    gross - fee;
+
+  if (withdrawGross) {
+    withdrawGross.textContent =
+      `$${gross.toFixed(2)}`;
+  }
+
+  if (withdrawFee) {
+    withdrawFee.textContent =
+      `$${fee.toFixed(2)}`;
+  }
+
+  if (withdrawNet) {
+    withdrawNet.textContent =
+      `$${net.toFixed(2)}`;
+  }
+
+}
+
+
+withdrawBalance?.addEventListener(
+  "input",
+  calculateWithdrawal
+);
+
+
+withdrawBtn?.addEventListener(
+  "click",
+  () => {
+
+    const wallet =
+      withdrawWallet?.value.trim() || "";
+
+    const gross =
+      Number(withdrawBalance?.value) || 0;
+
+    if (!wallet) {
+
+      showToast(
+        "Ingresa tu monedero de retiro."
+      );
+
+      withdrawWallet?.focus();
+
+      return;
+
+    }
+
+    if (gross <= 0) {
+
+      showToast(
+        "Ingresa un saldo válido para retirar."
+      );
+
+      withdrawBalance?.focus();
+
+      return;
+
+    }
+
+    const fee =
+      gross * 0.03;
+
+    const net =
+      gross - fee;
+
+    showToast(
+      `Retiro solicitado. Recibirás $${net.toFixed(2)} netos después del fee de 3%.`
+    );
+
+  }
+);
+
+
+calculateWithdrawal();
 
   /* =========================
      CONECTAR BILLETERA
