@@ -192,6 +192,19 @@ function updateReferralCode(address) {
   refCode.textContent =
     code;
 
+  const storedReferrer =
+  localStorage.getItem("nextora_referrer");
+
+if (
+  storedReferrer &&
+  storedReferrer !== code
+) {
+  localStorage.setItem(
+    "nextora_user_referrer",
+    storedReferrer
+  );
+}
+
   if (refLink) {
 
     refLink.textContent =
