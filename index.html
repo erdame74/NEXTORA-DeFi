@@ -1,63 +1,549 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="NEXTORA DeFi — panel digital de gestión de planes y activos.">
-<title>NEXTORA DeFi</title><link rel="stylesheet" href="styles.css">
+<title>NEXTORA DeFi</title>
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
 <header class="topbar">
-  <a class="brand" href="#inicio"><img src="logo.svg" alt="NEXTORA DeFi"><span>NEXTORA <b>DeFi</b></span></a>
-  <nav><a href="#planes">Planes</a><a href="#calculadora">Calculadora</a><a href="#dashboard">Dashboard</a></nav>
-  <button class="btn primary" id="connectBtn">Conectar billetera</button>
+
+  <a class="brand" href="#inicio">
+    <img src="logo.svg" alt="NEXTORA DeFi">
+    <span>NEXTORA <b>DeFi</b></span>
+  </a>
+
+  <nav>
+    <a href="#planes">Planes</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#billeteras">Billeteras</a>
+  </nav>
+
+  <button class="btn primary" id="connectBtn">
+    Conectar billetera
+  </button>
+
 </header>
+
 <main id="inicio">
+
 <section class="hero">
- <div>
-  <span class="eyebrow">DIGITAL ASSET PLATFORM</span>
-  <h1>Tu capital digital,<br><em>más claro. Más simple.</em></h1>
-  <p>Administra tus planes, consulta rendimientos estimados y controla tus operaciones desde una experiencia moderna.</p>
-  <div class="actions"><a class="btn primary" href="#planes">Ver planes</a><a class="btn ghost" href="#calculadora">Calcular rendimiento</a></div>
-  <div class="trust"><span>● USDT BEP20</span><span>● USDT TRC20</span><span>● Panel en USD</span></div>
- </div>
- <div class="hero-card"><div class="glow"></div><div class="balance"><span>Balance disponible</span><strong>$0.00</strong><small>Conecta tu billetera para comenzar</small></div><div class="mini"><div><span>Rendimiento</span><b>—</b></div><div><span>Plan activo</span><b>Ninguno</b></div></div></div>
+
+<div>
+
+<span class="eyebrow">DIGITAL ASSET PLATFORM</span>
+
+<h1>
+Tu capital digital,
+<br>
+<em>más claro. Más simple.</em>
+</h1>
+
+<p>
+Administra tus planes, consulta rendimientos estimados
+y controla tus operaciones desde una experiencia moderna.
+</p>
+
+<div class="actions">
+<a class="btn primary" href="#planes">Ver planes</a>
+<a class="btn ghost" href="#calculadora">Calcular rendimiento</a>
+</div>
+
+<div class="trust">
+<span>● USDT BEP20</span>
+<span>● USDT TRC20</span>
+<span>● Panel en USD</span>
+</div>
+
+</div>
+
+<div class="hero-card">
+
+<div class="glow"></div>
+
+<div class="balance">
+<span>Balance disponible</span>
+<strong>$0.00</strong>
+<small>Conecta tu billetera para comenzar</small>
+</div>
+
+<div class="mini">
+
+<div>
+<span>Rendimiento</span>
+<b>—</b>
+</div>
+
+<div>
+<span>Plan activo</span>
+<b>Ninguno</b>
+</div>
+
+</div>
+
+</div>
+
 </section>
+
 
 <section class="section" id="planes">
- <div class="head"><div><span class="eyebrow">OPCIONES DE INVERSIÓN</span><h2>Elige tu plazo</h2></div><p>Las tasas mostradas son estimaciones del plan y no representan una garantía de rentabilidad.</p></div>
- <div class="plans">
-  <article class="plan"><span class="days">1 DÍA</span><h3>Flex 1</h3><div class="rate">0,65% <small>/ día</small></div><p>Plazo corto y flexible.</p><button class="btn outline select" data-days="1" data-rate=".65">Seleccionar</button></article>
-  <article class="plan featured"><span class="popular">POPULAR</span><span class="days">7 DÍAS</span><h3>Flex 7</h3><div class="rate">0,75% <small>/ día</small></div><p>Equilibrio entre plazo y rendimiento estimado.</p><button class="btn primary select" data-days="7" data-rate=".75">Seleccionar</button></article>
-  <article class="plan"><span class="days">15 DÍAS</span><h3>Growth 15</h3><div class="rate">0,85% <small>/ día</small></div><p>Para objetivos de mediano plazo.</p><button class="btn outline select" data-days="15" data-rate=".85">Seleccionar</button></article>
-  <article class="plan"><span class="days">30 DÍAS</span><h3>Growth 30</h3><div class="rate">1,00% <small>/ día</small></div><p>Mayor plazo y rendimiento estimado.</p><button class="btn outline select" data-days="30" data-rate="1">Seleccionar</button></article>
- </div>
- <div class="limits">Rango de inversión: <b>$20 — $1.000 USD</b></div>
+
+<div class="head">
+
+<div>
+<span class="eyebrow">OPCIONES DE INVERSIÓN</span>
+<h2>Elige tu plazo</h2>
+</div>
+
+<p>
+Las tasas mostradas son estimaciones del plan y no representan
+una garantía de rentabilidad.
+</p>
+
+</div>
+
+
+<div class="plans">
+
+<article class="plan">
+
+<span class="days">1 DÍA</span>
+
+<h3>Flex 1</h3>
+
+<div class="rate">
+0,65% <small>/ día</small>
+</div>
+
+<p>Plazo corto y flexible.</p>
+
+<button class="btn outline select"
+data-days="1"
+data-rate=".65">
+Seleccionar
+</button>
+
+</article>
+
+
+<article class="plan featured">
+
+<span class="popular">POPULAR</span>
+
+<span class="days">7 DÍAS</span>
+
+<h3>Flex 7</h3>
+
+<div class="rate">
+0,75% <small>/ día</small>
+</div>
+
+<p>
+Equilibrio entre plazo y rendimiento estimado.
+</p>
+
+<button class="btn primary select"
+data-days="7"
+data-rate=".75">
+Seleccionar
+</button>
+
+</article>
+
+
+<article class="plan">
+
+<span class="days">15 DÍAS</span>
+
+<h3>Growth 15</h3>
+
+<div class="rate">
+0,85% <small>/ día</small>
+</div>
+
+<p>
+Para objetivos de mediano plazo.
+</p>
+
+<button class="btn outline select"
+data-days="15"
+data-rate=".85">
+Seleccionar
+</button>
+
+</article>
+
+
+<article class="plan">
+
+<span class="days">30 DÍAS</span>
+
+<h3>Growth 30</h3>
+
+<div class="rate">
+1,00% <small>/ día</small>
+</div>
+
+<p>
+Mayor plazo y rendimiento estimado.
+</p>
+
+<button class="btn outline select"
+data-days="30"
+data-rate="1">
+Seleccionar
+</button>
+
+</article>
+
+</div>
+
+
+<div class="limits">
+Rango de inversión:
+<b>$20 — $1.000 USD</b>
+</div>
+
 </section>
+
 
 <section class="section" id="calculadora">
- <div class="calc">
-  <div class="head"><div><span class="eyebrow">SIMULADOR</span><h2>Calcula tu rendimiento</h2></div></div>
-  <div class="form"><label>Monto (USD)<input id="amount" type="number" min="20" max="1000" step="1" value="100"></label>
-  <label>Plazo<select id="days"><option value="1">1 día — 0,65%</option><option value="7" selected>7 días — 0,75%</option><option value="15">15 días — 0,85%</option><option value="30">30 días — 1,00%</option></select></label></div>
-  <div class="results"><div><span>Capital</span><strong id="capital">$100.00</strong></div><div><span>Ganancia estimada</span><strong id="profit">$5.25</strong></div><div><span>Total estimado</span><strong id="total">$105.25</strong></div></div>
-  <p class="note">Simulación informativa con cálculo simple: capital × tasa diaria × días. No implica una promesa de rendimiento.</p>
- </div>
+
+<div class="calc">
+
+<div class="head">
+
+<div>
+<span class="eyebrow">SIMULADOR</span>
+<h2>Calcula tu rendimiento</h2>
+</div>
+
+</div>
+
+
+<div class="form">
+
+<label>
+Monto (USD)
+
+<input
+id="amount"
+type="number"
+min="20"
+max="1000"
+step="1"
+value="100">
+</label>
+
+
+<label>
+Plazo
+
+<select id="days">
+
+<option value="1">
+1 día — 0,65%
+</option>
+
+<option value="7" selected>
+7 días — 0,75%
+</option>
+
+<option value="15">
+15 días — 0,85%
+</option>
+
+<option value="30">
+30 días — 1,00%
+</option>
+
+</select>
+
+</label>
+
+</div>
+
+
+<div class="results">
+
+<div>
+<span>Capital</span>
+<strong id="capital">$100.00</strong>
+</div>
+
+<div>
+<span>Ganancia estimada</span>
+<strong id="profit">$5.25</strong>
+</div>
+
+<div>
+<span>Total estimado</span>
+<strong id="total">$105.25</strong>
+</div>
+
+</div>
+
+
+<p class="note">
+Simulación informativa con cálculo simple:
+capital × tasa diaria × días.
+No implica una promesa de rendimiento.
+</p>
+
+</div>
+
 </section>
+
 
 <section class="section" id="dashboard">
- <div class="head"><div><span class="eyebrow">PANEL</span><h2>Tu Dashboard</h2></div><span class="status"><i></i> Cuenta demo</span></div>
- <div class="dash"><div class="dashcard large"><span>Balance total</span><strong>$0.00</strong><small>USD</small></div><div class="dashcard"><span>Ganancias estimadas</span><strong>$0.00</strong></div><div class="dashcard"><span>Plan activo</span><strong>Ninguno</strong></div></div>
- <div class="lower"><div class="panel"><h3>Actividad reciente</h3><div class="empty">Aún no hay operaciones registradas.</div></div><div class="panel"><h3>Programa de referidos</h3><p>Consulta y gestiona referidos de hasta <b>5 niveles</b>.</p><div class="ref">Código: <b id="refCode">NEXTORA-DEMO</b><button id="copyRef">Copiar</button></div></div></div>
+
+<div class="head">
+
+<div>
+<span class="eyebrow">PANEL</span>
+<h2>Tu Dashboard</h2>
+</div>
+
+<span class="status">
+<i></i> Cuenta demo
+</span>
+
+</div>
+
+
+<div class="dash">
+
+<div class="dashcard large">
+<span>Balance total</span>
+<strong>$0.00</strong>
+<small>USD</small>
+</div>
+
+<div class="dashcard">
+<span>Ganancias estimadas</span>
+<strong>$0.00</strong>
+</div>
+
+<div class="dashcard">
+<span>Plan activo</span>
+<strong>Ninguno</strong>
+</div>
+
+</div>
+
+
+<div class="lower">
+
+<div class="panel">
+
+<h3>Actividad reciente</h3>
+
+<div class="empty">
+Aún no hay operaciones registradas.
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>Programa de referidos</h3>
+
+<p>
+Consulta y gestiona referidos de hasta
+<b>5 niveles</b>.
+</p>
+
+<div class="ref">
+
+Código:
+<b id="refCode">NEXTORA-DEMO</b>
+
+<button id="copyRef">
+Copiar
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="section">
- <div class="head"><div><span class="eyebrow">OPERACIONES</span><h2>Activos y billeteras</h2></div></div>
- <div class="ops"><article><b>USDT BEP20</b><span>BNB Smart Chain</span><button class="btn outline" data-action="deposit" data-network="BEP20">Depositar</button></article>
- <article><b>USDT TRC20</b><span>TRON</span><button class="btn outline" data-action="deposit" data-network="TRC20">Depositar</button></article>
- <article><b>Retiros</b><span>BEP20 / TRC20 · comisión 3%</span><button class="btn outline" data-action="withdraw">Solicitar retiro</button></article></div>
+
+<section class="section" id="billeteras">
+
+<div class="head">
+
+<div>
+
+<span class="eyebrow">OPERACIONES</span>
+
+<h2>
+Billeteras de inversión
+</h2>
+
+</div>
+
+<p>
+Selecciona la red correspondiente antes de realizar un depósito.
+</p>
+
+</div>
+
+
+<div class="ops">
+
+
+<article>
+
+<b>USDT BEP20</b>
+
+<span>
+BNB Smart Chain
+</span>
+
+<div class="wallet-address">
+
+<small>
+Dirección de depósito
+</small>
+
+<code>
+0x780b7601041f84b177c7e316ef3200460a77a80f
+</code>
+
+</div>
+
+
+<button
+class="btn outline copy-wallet"
+data-copy="0x780b7601041f84b177c7e316ef3200460a77a80f">
+
+Copiar dirección
+
+</button>
+
+
+<button
+class="btn primary"
+data-action="deposit"
+data-network="BEP20">
+
+Depositar USDT
+
+</button>
+
+</article>
+
+
+<article>
+
+<b>TRX TRC20</b>
+
+<span>
+TRON Network
+</span>
+
+<div class="wallet-address">
+
+<small>
+Dirección de depósito
+</small>
+
+<code>
+TLBHUkNYBifUbBUq9cgJa2nyT32xCkiHTS
+</code>
+
+</div>
+
+
+<button
+class="btn outline copy-wallet"
+data-copy="TLBHUkNYBifUbBUq9cgJa2nyT32xCkiHTS">
+
+Copiar dirección
+
+</button>
+
+
+<button
+class="btn primary"
+data-action="deposit"
+data-network="TRC20">
+
+Depositar TRX
+
+</button>
+
+</article>
+
+
+<article>
+
+<b>Retiros</b>
+
+<span>
+BEP20 / TRC20
+</span>
+
+<div class="wallet-address">
+
+<small>
+Comisión de retiro
+</small>
+
+<strong>3%</strong>
+
+</div>
+
+
+<button
+class="btn outline"
+data-action="withdraw">
+
+Solicitar retiro
+
+</button>
+
+</article>
+
+
+</div>
+
 </section>
+
 </main>
-<footer><div class="brand"><img src="logo.svg" alt=""><span>NEXTORA <b>DeFi</b></span></div><p>© 2026 NEXTORA DeFi · Interfaz de demostración</p></footer>
+
+
+<footer>
+
+<div class="brand">
+
+<img src="logo.svg" alt="NEXTORA DeFi">
+
+<span>
+NEXTORA <b>DeFi</b>
+</span>
+
+</div>
+
+<p>
+© 2026 NEXTORA DeFi · Plataforma digital
+</p>
+
+</footer>
+
+
 <div class="toast" id="toast"></div>
+
 <script src="app.js"></script>
-</body></html>
+
+</body>
+</html>
