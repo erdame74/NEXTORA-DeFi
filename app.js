@@ -124,42 +124,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+ /* =========================
+   REFERIDOS
+========================= */
 
-  /* =========================
-     COPIAR REFERIDO
-  ========================= */
+const refCode = document.getElementById("refCode");
+const copyRef = document.getElementById("copyRef");
 
-  document
-    .getElementById("copyRef")
-    ?.addEventListener(
-      "click",
-      async () => {
+function generateReferralCode(address) {
 
-        const code =
-          document
-            .getElementById("refCode")
-            ?.textContent
-            ?.trim() || "";
+  if (!address) {
+    return "NEXTORA-DEMO";
+  }
 
-        try {
+  return "NXT-" + address
+    .slice(2, 8)
+    .toUpperCase();
 
-          await navigator.clipboard
-            .writeText(code);
+}
 
-          showToast(
-            "Código de referido copiado"
-          );
 
-        } catch {
+function updateReferralCode(address) {
 
-          showToast(
-            `Código: ${code}`
-          );
+  if (!refCode) return;
 
-        }
+  refCode.textContent =
+    generateReferralCode(address);
 
-      }
-    );
+}
+
+
+copyRef?.addEventListener(
+  "click",
+  async () => {
+
+    const code =
+      refCode?.textContent?.trim() || "";
+
+    if (!code) return;
+
+    try {
+
+      await navigator.clipboard.writeText(code);
+
+      showToast(
+        "Código de referido copiado"
+      );
+
+    } catch {
+
+      showToast(
+        `Código: ${code}`
+      );
+
+    }
+
+  }
+); 
+
 
 
   /* =========================
