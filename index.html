@@ -532,32 +532,113 @@ Depositar TRX
 </article>
 
 
-<article>
+<article class="withdrawal-card">
 
-<b>Retiros</b>
+  <b>Retiros</b>
 
-<span>
-BEP20 / TRC20
-</span>
+  <span>
+    Recibe tus fondos directamente en tu billetera
+  </span>
 
-<div class="wallet-address">
+  <div class="wallet-address">
 
-<small>
-Comisión de retiro
-</small>
+    <small>
+      Comisión de retiro
+    </small>
 
-<strong>3%</strong>
+    <strong>
+      3%
+    </strong>
 
-</div>
+  </div>
 
 
-<button
-class="btn outline"
-data-action="withdraw">
+  <label class="withdraw-field">
 
-Solicitar retiro
+    <span>
+      Monedero de retiro
+    </span>
 
-</button>
+    <input
+      id="withdrawWallet"
+      type="text"
+      placeholder="Pega aquí tu dirección BEP20 o TRC20"
+      autocomplete="off"
+    >
+
+    <small>
+      Esta es la dirección donde recibirás tu retiro.
+      Verifica cuidadosamente la red antes de solicitarlo.
+    </small>
+
+  </label>
+
+
+  <label class="withdraw-field">
+
+    <span>
+      Saldo disponible para retirar (USD)
+    </span>
+
+    <input
+      id="withdrawBalance"
+      type="number"
+      min="0"
+      step="0.01"
+      value="0"
+      placeholder="0.00"
+    >
+
+  </label>
+
+
+  <div class="withdraw-summary">
+
+    <div>
+      <span>
+        Saldo de retiro
+      </span>
+
+      <strong id="withdrawGross">
+        $0.00
+      </strong>
+    </div>
+
+
+    <div>
+      <span>
+        Fee de retiro (3%)
+      </span>
+
+      <strong id="withdrawFee">
+        $0.00
+      </strong>
+    </div>
+
+
+    <div class="net-withdraw">
+
+      <span>
+        Recibirás neto
+      </span>
+
+      <strong id="withdrawNet">
+        $0.00
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <button
+    class="btn primary"
+    id="withdrawBtn"
+    type="button">
+
+    Solicitar retiro
+
+  </button>
 
 </article>
 
