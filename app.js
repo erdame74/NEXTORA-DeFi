@@ -1,28 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   const toast = document.getElementById("toast");
 
   function showToast(message) {
+
     if (!toast) return;
 
     toast.textContent = message;
     toast.classList.add("show");
 
     clearTimeout(window.toastTimer);
+
     window.toastTimer = setTimeout(() => {
       toast.classList.remove("show");
-    }, 2800);
+    }, 3000);
+
   }
 
-  // =========================
-  // CALCULADORA
-  // =========================
 
-  const rates = {
-    1: 0.65,
-    7: 0.75,
-    15: 0.85,
-    30: 1.00
-  };
+  /* =========================
+     CALCULADORA
+  ========================= */
 
   const amount = document.getElementById("amount");
   const days = document.getElementById("days");
@@ -30,14 +28,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const profit = document.getElementById("profit");
   const total = document.getElementById("total");
 
+  const rates = {
+    1: 0.65,
+    7: 0.75,
+    15: 0.85,
+    30: 1
+  };
+
+
   function calculate() {
+
     const value = Math.min(
       1000,
       Math.max(20, Number(amount?.value) || 20)
     );
 
-    const selectedDays = Number(days?.value) || 7;
-    const rate = rates[selectedDays] || 0.75;
+    const selectedDays =
+      Number(days?.value) || 7;
+
+    const rate =
+      rates[selectedDays] || 0.75;
 
     const gain =
       value * (rate / 100) * selectedDays;
@@ -47,98 +57,158 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (capital) {
-      capital.textContent = `$${value.toFixed(2)}`;
+      capital.textContent =
+        `$${value.toFixed(2)}`;
     }
 
     if (profit) {
-      profit.textContent = `$${gain.toFixed(2)}`;
+      profit.textContent =
+        `$${gain.toFixed(2)}`;
     }
 
     if (total) {
       total.textContent =
         `$${(value + gain).toFixed(2)}`;
     }
+
   }
 
-  amount?.addEventListener("input", calculate);
-  days?.addEventListener("change", calculate);
+
+  amount?.addEventListener(
+    "input",
+    calculate
+  );
+
+  days?.addEventListener(
+    "change",
+    calculate
+  );
 
   calculate();
 
 
-  // =========================
-  // SELECCIONAR PLAN
-  // =========================
+  /* =========================
+     SELECCIONAR PLAN
+  ========================= */
 
-  document.querySelectorAll(".select").forEach((button) => {
+  document
+    .querySelectorAll(".select")
+    .forEach(button => {
 
-    button.addEventListener("click", () => {
+      button.addEventListener(
+        "click",
+        () => {
 
-      const selectedDays =
-        Number(button.dataset.days);
+          const selectedDays =
+            Number(button.dataset.days);
 
-      if (days) {
-        days.value =
-          String(selectedDays);
-      }
+          if (days) {
+            days.value =
+              String(selectedDays);
+          }
 
-      calculate();
+          calculate();
 
-      document
-        .getElementById("calculadora")
-        ?.scrollIntoView({
-          behavior: "smooth"
-        });
+          document
+            .getElementById("calculadora")
+            ?.scrollIntoView({
+              behavior: "smooth"
+            });
 
-      showToast(
-        `Plan seleccionado: ${selectedDays} día${selectedDays === 1 ? "" : "s"}`
+          showToast(
+            `Plan seleccionado: ${selectedDays} día${selectedDays === 1 ? "" : "s"}`
+          );
+
+        }
       );
+
     });
 
-  });
 
-
-  // =========================
-  // COPIAR REFERIDO
-  // =========================
+  /* =========================
+     COPIAR REFERIDO
+  ========================= */
 
   document
     .getElementById("copyRef")
-    ?.addEventListener("click", async () => {
+    ?.addEventListener(
+      "click",
+      async () => {
 
-      const code =
-        document.getElementById("refCode")
-          ?.textContent || "";
+        const code =
+          document
+            .getElementById("refCode")
+            ?.textContent
+            ?.trim() || "";
 
-      try {
+        try {
 
-        await navigator.clipboard
-          .writeText(code);
+          await navigator.clipboard
+            .writeText(code);
 
-        showToast(
-          "Código de referido copiado"
-        );
+          showToast(
+            "Código de referido copiado"
+          );
 
-      } catch {
+        } catch {
 
-        showToast(
-          `Código: ${code}`
-        );
+          showToast(
+            `Código: ${code}`
+          );
+
+        }
 
       }
+    );
+
+
+  /* =========================
+     COPIAR BILLETERAS
+  ========================= */
+
+  document
+    .querySelectorAll(".copy-wallet")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        async () => {
+
+          const address =
+            button.dataset.copy;
+
+          try {
+
+            await navigator.clipboard
+              .writeText(address);
+
+            showToast(
+              "Dirección de billetera copiada correctamente"
+            );
+
+          } catch {
+
+            showToast(
+              address
+            );
+
+          }
+
+        }
+      );
 
     });
 
 
-  // =========================
-  // DEPÓSITOS
-  // =========================
+  /* =========================
+     DEPÓSITOS
+  ========================= */
 
   document
     .querySelectorAll(
       '[data-action="deposit"]'
     )
-    .forEach((button) => {
+    .forEach(button => {
 
       button.addEventListener(
         "click",
@@ -148,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
             button.dataset.network;
 
           showToast(
-            `Depósito ${network}: conecta tu billetera para continuar`
+            `Red seleccionada: ${network}. Verifica la dirección antes de enviar fondos.`
           );
 
         }
@@ -157,26 +227,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  // =========================
-  // RETIROS
-  // =========================
+  /* =========================
+     RETIROS
+  ========================= */
 
   document
     .querySelector(
       '[data-action="withdraw"]'
     )
-    ?.addEventListener("click", () => {
+    ?.addEventListener(
+      "click",
+      () => {
 
-      showToast(
-        "Conecta tu billetera para solicitar un retiro. Comisión: 3%."
-      );
+        showToast(
+          "Solicitud de retiro. Comisión: 3%."
+        );
 
-    });
+      }
+    );
 
 
-  // =========================
-  // CONECTAR BILLETERA
-  // =========================
+  /* =========================
+     CONECTAR BILLETERA
+  ========================= */
 
   const connectBtn =
     document.getElementById(
@@ -190,10 +263,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!window.ethereum) {
 
         showToast(
-          "Instala MetaMask o una billetera Web3 compatible"
+          "Instala MetaMask o una billetera Web3 compatible."
         );
 
         return;
+
       }
 
       try {
@@ -209,15 +283,13 @@ document.addEventListener("DOMContentLoaded", () => {
           const address =
             accounts[0];
 
-          const shortAddress =
+          connectBtn.textContent =
             `${address.slice(0, 6)}…${address.slice(-4)}`;
 
-          connectBtn.textContent =
-            shortAddress;
-
           showToast(
-            "Billetera conectada correctamente"
+            "Billetera conectada correctamente."
           );
+
         }
 
       } catch (error) {
@@ -225,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (error?.code !== 4001) {
 
           showToast(
-            "No se pudo conectar la billetera"
+            "No se pudo conectar la billetera."
           );
 
         }
@@ -236,17 +308,15 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  // =========================
-  // MENÚ MÓVIL
-  // =========================
+  /* =========================
+     MENÚ MÓVIL
+  ========================= */
 
   const topbar =
     document.querySelector(".topbar");
 
   const nav =
-    document.querySelector(
-      ".topbar nav"
-    );
+    document.querySelector(".topbar nav");
 
   if (topbar && nav) {
 
@@ -284,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     nav
       .querySelectorAll("a")
-      .forEach((link) => {
+      .forEach(link => {
 
         link.addEventListener(
           "click",
