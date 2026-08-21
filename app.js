@@ -145,6 +145,20 @@ const referralBaseUrl =
   window.location.origin +
   window.location.pathname;
 
+  const referralParams = new URLSearchParams(
+  window.location.search
+);
+
+const incomingReferral =
+  referralParams.get("ref");
+
+if (incomingReferral) {
+  localStorage.setItem(
+    "nextora_referrer",
+    incomingReferral
+  );
+}
+
 
 function generateReferralCode(address) {
 
