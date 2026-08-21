@@ -300,19 +300,21 @@ copyRef?.addEventListener(
               "eth_requestAccounts"
           });
 
-        if (accounts?.[0]) {
+    if (accounts?.[0]) {
 
-          const address =
-            accounts[0];
+  const address =
+    accounts[0];
 
-          connectBtn.textContent =
-            `${address.slice(0, 6)}…${address.slice(-4)}`;
+  connectBtn.textContent =
+    `${address.slice(0, 6)}…${address.slice(-4)}`;
 
-          showToast(
-            "Billetera conectada correctamente."
-          );
+  updateReferralCode(address);
 
-        }
+  showToast(
+    "Billetera conectada correctamente."
+  );
+
+    }    
 
       } catch (error) {
 
